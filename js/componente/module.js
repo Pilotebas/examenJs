@@ -1,7 +1,7 @@
 fetch('https://search.imdbot.workers.dev/?q=focus').then(response => response.json()).then(data => { 
-    console.log("a", getAllyear(data.description, 2002))
-    console.log("b", getAllActor(data.description, "Will Smith"));
-    console.log("c", getAllRango(data.description, 1000, 5000));
+    console.log("a", filterByYear(data.description, 2002))
+    console.log("b", filterByActor(data.description, "Will Smith"));
+    console.log("c", filterByRank(data.description, 1000, 5000));
     console.log("d", getAlltitle(data.description));
     console.log("e", getAlltitleAndYear(data.description));
     console.log("f", getIMDBandTitle(data.description));
@@ -9,21 +9,21 @@ fetch('https://search.imdbot.workers.dev/?q=focus').then(response => response.js
     console.log("h", getDetails(data.description));
 })
 
-function getAllyear(data, ano) {
+function filterByYear(data, ano) {
     return data.filter(pelicula => pelicula["#YEAR"] === ano);
   }
   
-  function getAllActor(data, actor) {
+  function filterByActor(data, actor) {
     actor = actor.split(' ');
     for(let i = 0; i < actor.length; i++) {
       actor[i] = actor[i].charAt(0).toUpperCase() + actor[i].slice(1);
     }
     actor = actor.join(' ');
-    
+
     return data.filter(pelicula => pelicula["#ACTORS"].includes(actor));
   }
   
-  function getAllRango(data, rangoMin, rangoMax) {
+  function filterByRank(data, rangoMin, rangoMax) {
     return data.filter(pelicula => pelicula["#RANK"] >= rangoMin && pelicula["#RANK"] <= rangoMax);
   }
   
@@ -31,7 +31,7 @@ function getAllyear(data, ano) {
     return data.map(pelicula => pelicula["#TITLE"]);
   }
   function getAlltitleAndYear(data) {
-    return data.map(pelicula => ({ titulo: pelicula["#TITLE"], ano: pelicula["#YEAR"] }));
+    return data.map(pelicula => ({ titulo: pelicula["#TITLE"], anio: pelicula["#YEAR"] }));
   }
   
   function getIMDBandTitle(data) {
@@ -39,7 +39,7 @@ function getAllyear(data, ano) {
   }
   
   function getURLandType(data) {
-    return data.map(pelicula => ({ url: pelicula["#IMDB_URL"], tipo: pelicula["#TYPE"] }));
+    return data.map(pelicula => ({ url: pelicula["#IMDB_URL"], tipo: pelicula["#"] }));
   }
   
   function getDetails(data) {
