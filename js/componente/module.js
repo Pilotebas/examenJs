@@ -14,6 +14,12 @@ function getAllyear(data, ano) {
   }
   
   function getAllActor(data, actor) {
+    actor = actor.split(' ');
+    for(let i = 0; i < actor.length; i++) {
+      actor[i] = actor[i].charAt(0).toUpperCase() + actor[i].slice(1);
+    }
+    actor = actor.join(' ');
+    
     return data.filter(pelicula => pelicula["#ACTORS"].includes(actor));
   }
   
