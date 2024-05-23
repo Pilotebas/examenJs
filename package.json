@@ -4,15 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "ft": "node src/js/modules/module.js",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "lit": "^3.1.2"
-  },
-  "devDependencies": {
-    "vite": "^5.2.0"
+    "ft": "node js/componente/module.js"
   }
 }
